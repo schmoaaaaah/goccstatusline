@@ -1,0 +1,22 @@
+{
+    "model": {
+        "id": "claude-opus-4-6",
+        "display_name": "Opus"
+    },
+    "workspace": {
+        "current_dir": "/home/user/bigproject"
+    },
+    "cost": {
+        "total_cost_usd": 5.67,
+        "total_duration_ms": 7200000,
+        "total_api_duration_ms": 15000,
+        "total_lines_added": 1200,
+        "total_lines_removed": 800
+    },
+    "context_window": {
+        "context_window_size": 200000,
+        "used_percentage": 92,
+        "remaining_percentage": 8
+    },
+    "exceeds_200k_tokens": false
+}

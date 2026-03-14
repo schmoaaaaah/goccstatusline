@@ -1,0 +1,27 @@
+{
+    "model": {
+        "id": "claude-haiku-4-5",
+        "display_name": "Claude Haiku"
+    },
+    "workspace": {
+        "current_dir": "/home/user/project"
+    },
+    "cost": {
+        "total_cost_usd": 0.005,
+        "total_duration_ms": 120000,
+        "total_api_duration_ms": 800,
+        "total_lines_added": 10,
+        "total_lines_removed": 0
+    },
+    "context_window": {
+        "context_window_size": 200000,
+        "used_percentage": null,
+        "remaining_percentage": null,
+        "current_usage": {
+            "input_tokens": 30000,
+            "output_tokens": 500,
+            "cache_creation_input_tokens": 10000,
+            "cache_read_input_tokens": 5000
+        }
+    }
+}

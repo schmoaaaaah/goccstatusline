@@ -1,0 +1,6 @@
+[tools]
+go = { version = "1.26.1" }
+
+[tasks.build]
+env = { CGO_ENABLED = "0" }
+run = "go build -v -trimpath -ldflags=\"-s -w\" -o goccstatusline goccstatusline.go"

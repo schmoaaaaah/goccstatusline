@@ -1,0 +1,21 @@
+{
+    "model": {
+        "id": "claude-sonnet-4-6",
+        "display_name": "Sonnet"
+    },
+    "workspace": {
+        "current_dir": "/home/user/project"
+    },
+    "cost": {
+        "total_cost_usd": 0,
+        "total_duration_ms": 5000,
+        "total_api_duration_ms": 200,
+        "total_lines_added": 0,
+        "total_lines_removed": 0
+    },
+    "context_window": {
+        "context_window_size": 200000,
+        "used_percentage": 1,
+        "remaining_percentage": 99
+    }
+}
