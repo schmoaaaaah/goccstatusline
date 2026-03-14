@@ -1,0 +1,22 @@
+{
+    "model": {
+        "id": "claude-opus-4-6",
+        "display_name": "Claude Opus"
+    },
+    "workspace": {
+        "current_dir": "/home/user/project"
+    },
+    "cost": {
+        "total_cost_usd": 0,
+        "total_duration_ms": 0,
+        "total_api_duration_ms": 0,
+        "total_lines_added": 0,
+        "total_lines_removed": 0
+    },
+    "context_window": {
+        "context_window_size": 200000,
+        "used_percentage": null,
+        "remaining_percentage": null,
+        "current_usage": null
+    }
+}
