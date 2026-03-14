@@ -1,6 +1,6 @@
 # goccstatusline
 
-A claude code statusline as a static binay beacuse npx is scary.  
+A claude code statusline as a static binary because npx is scary.  
 Output inspired by [https://github.com/strayer/dotfiles](https://github.com/strayer/dotfiles/blob/cc8b3f259cbf7e259971d04195be53185ee874b1/dot_claude/executable_statusline.sh)
 
 ## Installation

@@ -53,6 +53,7 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v7
         with:
+          name: goccstatusline-${{ matrix.goos }}-${{ matrix.goarch }}
           path: goccstatusline-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.goos == 'windows' && '.exe' || '' }}
           archive: false
 

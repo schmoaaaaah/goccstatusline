@@ -51,6 +51,7 @@ type ContextWindow struct {
 
 type CurrentUsage struct {
 	InputTokens              int `json:"input_tokens"`
+	OutputTokens             int `json:"output_tokens"`
 	CacheCreationInputTokens int `json:"cache_creation_input_tokens"`
 	CacheReadInputTokens     int `json:"cache_read_input_tokens"`
 }
@@ -124,8 +125,8 @@ func GetGitInfo(path string) (*GitInfo, error) {
 	info.CommitShort = hex.EncodeToString(headCommit.Hash[:4])[:7]
 
 	msg := strings.SplitN(headCommit.Message, "\n", 2)[0]
-	if len(msg) > 40 {
-		msg = msg[:40]
+	if len(msg) > 55 {
+		msg = msg[:55]
 	}
 	info.CommitMsg = msg
 
@@ -304,12 +305,8 @@ func buildLine2(gitInfo *GitInfo) string {
 	b.WriteString(reset)
 
 	if gitInfo.CommitMsg != "" {
-		msg := gitInfo.CommitMsg
-		if len(msg) > 55 {
-			msg = msg[:55] + "..."
-		}
 		b.WriteByte(' ')
-		b.WriteString(msg)
+		b.WriteString(gitInfo.CommitMsg)
 	}
 
 	return b.String()
@@ -337,7 +334,7 @@ func buildLine3(input *StatusInput) string {
 	} else if input.ContextWindow.CurrentUsage != nil {
 		// Fallback: calculate from current_usage
 		cu := input.ContextWindow.CurrentUsage
-		usedTokens = cu.InputTokens + cu.CacheCreationInputTokens + cu.CacheReadInputTokens
+		usedTokens = cu.InputTokens + cu.OutputTokens + cu.CacheCreationInputTokens + cu.CacheReadInputTokens
 		freeTokens = totalTokens - usedTokens
 		if totalTokens > 0 {
 			usagePct = (usedTokens * 100) / totalTokens

@@ -190,20 +190,18 @@ func TestLine2WithCommit(t *testing.T) {
 	}
 }
 
-func TestLine2TruncatesLongMessage(t *testing.T) {
+func TestLine2LongMessagePassedThrough(t *testing.T) {
+	// Truncation happens in GetGitInfo, not buildLine2.
+	// buildLine2 renders whatever CommitMsg it receives.
+	longMsg := "This is a very long commit message that should already be truncated by GetGitInfo"
 	git := &GitInfo{
 		CommitShort: "abc1234",
-		CommitMsg:   "This is a very long commit message that should be truncated at fifty five characters plus ellipsis",
+		CommitMsg:   longMsg,
 	}
 	result := stripANSI(buildLine2(git))
 
-	if !strings.HasSuffix(result, "...") {
-		t.Errorf("long message should end with ..., got %q", result)
-	}
-	// The raw content after [abc1234] should be at most 55+3 chars
-	parts := strings.SplitN(result, "] ", 2)
-	if len(parts) == 2 && len(parts[1]) > 58 {
-		t.Errorf("truncated message too long: %d chars", len(parts[1]))
+	if !strings.Contains(result, longMsg) {
+		t.Errorf("buildLine2 should render the full CommitMsg it receives, got %q", result)
 	}
 }
 
@@ -232,13 +230,13 @@ func TestLine3FallbackToCurrentUsage(t *testing.T) {
 	input := loadFixture(t, "no_percentage_fallback")
 	result := stripANSI(buildLine3(input))
 
-	// 30000 + 10000 + 5000 = 45000 used, 155000 free = 155k
-	// 45000/200000 = 22%
+	// 30000 + 500 + 10000 + 5000 = 45500 used, 154500 free = 154k
+	// 45500/200000 = 22%
 	if !strings.Contains(result, "22%") {
 		t.Errorf("should calculate 22%% from current_usage, got %q", result)
 	}
-	if !strings.Contains(result, "155k free") {
-		t.Errorf("should show 155k free, got %q", result)
+	if !strings.Contains(result, "154k free") {
+		t.Errorf("should show 154k free, got %q", result)
 	}
 }
 
